@@ -1,16 +1,13 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
+    "title": "Digital Name Card API",
+    "description": "The Digital Name Card API description",
+    "version": "1.0"
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://dnc-api.dev.prometeus-kc.com"
     }
   ],
   "security": [
@@ -19,176 +16,2749 @@
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/v1.0/auth/sign-in": {
       "post": {
-        "description": "Creates a new plant in the store",
+        "operationId": "AuthController_signIn",
+        "summary": "Sign in",
+        "parameters": [
+
+        ],
         "requestBody": {
-          "description": "Plant to add to the store",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+                "$ref": "#/components/schemas/SignInDto"
               }
             }
           }
-        }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+    "/v1.0/auth/sign-up": {
+      "post": {
+        "operationId": "AuthController_signUp",
+        "summary": "Sign up",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1.0/auth/sign-up/resend-otp": {
+      "post": {
+        "operationId": "AuthController_signUpResendOtp",
+        "summary": "Sign up resend OTP",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendOtpDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1.0/auth/sign-up/verify-otp": {
+      "post": {
+        "operationId": "AuthController_signUpVerityOtp",
+        "summary": "Sign up verify OTP",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyOtpDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1.0/auth/forget-password": {
+      "post": {
+        "operationId": "AuthController_forgetPassword",
+        "summary": "Forget password",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1.0/auth/forget-password/resend-otp": {
+      "post": {
+        "operationId": "AuthController_forgetPasswordResendOtp",
+        "summary": "Forget password resend OTP",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendOtpDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1.0/auth/forget-password/verify-otp": {
+      "post": {
+        "operationId": "AuthController_forgetPasswordVerifyOtp",
+        "summary": "Forget password verify OTP",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyOtpDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1.0/auth/forget-password/create-password": {
+      "post": {
+        "operationId": "AuthController_forgetPasswordCreateNewPassword",
+        "summary": "Forget password create new password",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1.0/auth/users/info": {
+      "post": {
+        "operationId": "AuthController_userInfo",
+        "summary": "User info",
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/auth/tokens/refresh": {
+      "post": {
+        "operationId": "AuthController_refresh",
+        "summary": "Refresh token",
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ],
+        "security": [
+          {
+            "refresh": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/auth/logout": {
+      "post": {
+        "operationId": "AuthController_logout",
+        "summary": "Logout",
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          },
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/packages": {
+      "post": {
+        "operationId": "PackagesController_create",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePackageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Packages"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "get": {
+        "operationId": "PackagesController_findAll",
+        "summary": "Get all packages",
+        "description": "for website frontend only",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Packages"
+        ]
+      }
+    },
+    "/v1.0/packages/admin": {
+      "get": {
+        "operationId": "PackagesController_findAllForAdmin",
+        "summary": "Get all packages",
+        "description": "for admin panel only",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
+            "name": "order_by",
+            "required": false,
+            "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "per_page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Packages"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/packages/{id}": {
+      "get": {
+        "operationId": "PackagesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Packages"
+        ]
+      },
+      "patch": {
+        "operationId": "PackagesController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePackageDto"
               }
             }
           }
-        }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Packages"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "PackagesController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Packages"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/templates": {
+      "post": {
+        "operationId": "TemplatesController_create",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTemplateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Templates"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "get": {
+        "operationId": "TemplatesController_findAll",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Templates"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/templates/{id}": {
+      "get": {
+        "operationId": "TemplatesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Templates"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "TemplatesController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTemplateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Templates"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "TemplatesController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Templates"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/cards": {
+      "post": {
+        "operationId": "CardsController_create",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCardDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cards"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CardsController_findAll",
+        "parameters": [
+          {
+            "name": "order_by",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "per_page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cards"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/cards/generate": {
+      "post": {
+        "operationId": "CardsController_generateCard",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateCardDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cards"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/cards/customer": {
+      "get": {
+        "operationId": "CardsController_findAllCardByCustomer",
+        "parameters": [
+          {
+            "name": "order_by",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "per_page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cards"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/cards/customer/{cardId}": {
+      "get": {
+        "operationId": "CardsController_findOneByCustomer",
+        "parameters": [
+          {
+            "name": "cardId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cards"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/cards/{id}": {
+      "get": {
+        "operationId": "CardsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cards"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CardsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCardDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cards"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "CardsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cards"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/users": {
+      "post": {
+        "operationId": "UsersController_create",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "get": {
+        "operationId": "UsersController_findAll",
+        "parameters": [
+          {
+            "name": "order_by",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "per_page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "Admin",
+                "Customer"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/users/me": {
+      "post": {
+        "operationId": "UsersController_customerUpdateProfile",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/users/{id}": {
+      "get": {
+        "operationId": "UsersController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "UsersController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "UsersController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/subscriptions": {
+      "get": {
+        "operationId": "SubscriptionsController_findAll",
+        "parameters": [
+          {
+            "name": "order_by",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "per_page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/subscriptions/cancel": {
+      "post": {
+        "operationId": "SubscriptionsController_cancelSubscription",
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/subscriptions/my": {
+      "post": {
+        "operationId": "SubscriptionsController_mySubscriptions",
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/subscriptions/{id}": {
+      "get": {
+        "operationId": "SubscriptionsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "SubscriptionsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/orders": {
+      "post": {
+        "operationId": "OrdersController_create",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Orders"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "get": {
+        "operationId": "OrdersController_findAll",
+        "parameters": [
+          {
+            "name": "order_by",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "per_page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "Pending",
+                "Completed",
+                "Cancelled"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Orders"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/orders/verify": {
+      "post": {
+        "operationId": "OrdersController_verifyOrder",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyOrderDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Orders"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/orders/my": {
+      "get": {
+        "operationId": "OrdersController_myOrders",
+        "parameters": [
+          {
+            "name": "order_by",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "per_page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "Pending",
+                "Completed",
+                "Cancelled"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Orders"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/orders/my/{id}": {
+      "get": {
+        "operationId": "OrdersController_myOrderById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Orders"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/orders/{id}": {
+      "get": {
+        "operationId": "OrdersController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Orders"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/payment-methods": {
+      "post": {
+        "operationId": "PaymentMethodsController_create",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentMethodDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Payment Methods"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "get": {
+        "operationId": "PaymentMethodsController_findAll",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Payment Methods"
+        ]
+      }
+    },
+    "/v1.0/payment-methods/{id}": {
+      "get": {
+        "operationId": "PaymentMethodsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Payment Methods"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "PaymentMethodsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentMethodDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Payment Methods"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "PaymentMethodsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Payment Methods"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1.0/payments": {
+      "post": {
+        "operationId": "PaymentsController_create",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Payments"
+        ]
+      },
+      "get": {
+        "operationId": "PaymentsController_findAll",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Payments"
+        ]
+      }
+    },
+    "/v1.0/payments/{id}": {
+      "get": {
+        "operationId": "PaymentsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Payments"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "PaymentsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Payments"
+        ]
+      },
+      "delete": {
+        "operationId": "PaymentsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Payments"
+        ]
+      }
+    },
+    "/v1.0/faq": {
+      "post": {
+        "operationId": "FaqController_create",
+        "parameters": [
+
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFaqDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Frequently Asked Questions"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "get": {
+        "operationId": "FaqController_findAll",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Frequently Asked Questions"
+        ]
+      }
+    },
+    "/v1.0/faq/{id}": {
+      "get": {
+        "operationId": "FaqController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Frequently Asked Questions"
+        ]
+      },
+      "patch": {
+        "operationId": "FaqController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFaqDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Frequently Asked Questions"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "FaqController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Frequently Asked Questions"
+        ],
+        "security": [
+          {
+            "bearer": [
+
+            ]
+          }
+        ]
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      },
+      "refresh": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
     "schemas": {
-      "Plant": {
+      "SignInDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "admin@example.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "example": "123456"
+          }
+        },
         "required": [
-          "name"
-        ],
+          "email",
+          "password"
+        ]
+      },
+      "SignUpDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "description": "Full name of the user",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the user",
+            "example": "jonhdeo@example.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "Password of the user",
+            "example": "password"
+          }
+        },
+        "required": [
+          "fullName",
+          "email",
+          "password"
+        ]
+      },
+      "ResendOtpDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "jonhdeo@example.com"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "VerifyOtpDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "jonhdeo@example.com"
+          },
+          "otpCode": {
+            "type": "string",
+            "example": "123456"
+          }
+        },
+        "required": [
+          "email",
+          "otpCode"
+        ]
+      },
+      "ForgetPasswordDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "jonhdeo@example.com"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "CreatePasswordDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "jonhdeo@example.com"
+          },
+          "newPassword": {
+            "type": "string",
+            "description": "Password",
+            "example": "password",
+            "minLength": 6
+          },
+          "token": {
+            "type": "string",
+            "description": "Token",
+            "example": "token"
+          }
+        },
+        "required": [
+          "email",
+          "newPassword",
+          "token"
+        ]
+      },
+      "CreatePackageDto": {
         "type": "object",
         "properties": {
           "name": {
-            "description": "The name of the plant",
-            "type": "string"
+            "type": "string",
+            "example": "Basic",
+            "description": "Name of the package"
           },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
+          "description": {
+            "type": "string",
+            "example": "This is a basic package",
+            "description": "Description of the package"
           },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
+          "price": {
+            "type": "number",
+            "example": 99.99,
+            "description": "Price of the package"
+          },
+          "order": {
+            "type": "number",
+            "example": 1000,
+            "description": "Order of the package"
+          },
+          "type": {
+            "type": "string",
+            "example": "Individual",
+            "description": "Type of the package",
+            "enum": [
+              "Individual",
+              "Business"
+            ]
+          },
+          "duration": {
+            "type": "string",
+            "example": "Daily",
+            "description": "Duration of the package",
+            "enum": [
+              "Daily",
+              "Weekly",
+              "Monthly",
+              "Yearly"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "example": "Active",
+            "description": "Status of the package",
+            "enum": [
+              "Active",
+              "Inactive",
+              "Deleted"
+            ]
           }
+        },
+        "required": [
+          "name",
+          "price",
+          "order",
+          "type",
+          "duration"
         ]
       },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
+      "UpdatePackageDto": {
         "type": "object",
         "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
+          "name": {
+            "type": "string",
+            "example": "Basic",
+            "description": "Name of the package"
           },
-          "message": {
-            "type": "string"
+          "description": {
+            "type": "string",
+            "example": "This is a basic package",
+            "description": "Description of the package"
+          },
+          "price": {
+            "type": "number",
+            "example": 99.99,
+            "description": "Price of the package"
+          },
+          "order": {
+            "type": "number",
+            "example": 1000,
+            "description": "Order of the package"
+          },
+          "type": {
+            "type": "string",
+            "example": "Individual",
+            "description": "Type of the package",
+            "enum": [
+              "Individual",
+              "Business"
+            ]
+          },
+          "duration": {
+            "type": "string",
+            "example": "Daily",
+            "description": "Duration of the package",
+            "enum": [
+              "Daily",
+              "Weekly",
+              "Monthly",
+              "Yearly"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "example": "Active",
+            "description": "Status of the package",
+            "enum": [
+              "Active",
+              "Inactive",
+              "Deleted"
+            ]
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      },
+      "CreateTemplateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the template",
+            "example": "Template 1"
+          },
+          "image": {
+            "type": "string",
+            "description": "The image of the template",
+            "example": "https://example.com/image.png",
+            "format": "binary"
+          },
+          "componentName": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the template",
+            "example": "Active",
+            "enum": [
+              "Active",
+              "Inactive",
+              "Deleted"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "image",
+          "componentName"
+        ]
+      },
+      "UpdateTemplateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the template",
+            "example": "Template 1"
+          },
+          "image": {
+            "type": "string",
+            "description": "The image of the template",
+            "example": "https://example.com/image.png",
+            "format": "binary"
+          },
+          "componentName": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the template",
+            "example": "Active",
+            "enum": [
+              "Active",
+              "Inactive",
+              "Deleted"
+            ]
+          }
+        }
+      },
+      "CreateCardDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "positionName": {
+            "type": "string",
+            "description": "The position name of the card owner",
+            "example": "Software Engineer"
+          },
+          "companyName": {
+            "type": "string",
+            "description": "The name of the company",
+            "example": "Company Inc."
+          },
+          "color": {
+            "type": "string",
+            "description": "The hex color of the card",
+            "example": "#000000"
+          },
+          "emailAddress": {
+            "type": "string",
+            "description": "The email address of the card owner",
+            "example": "jonhdeo@example.com"
+          },
+          "websiteUrl": {
+            "type": "string",
+            "description": "The website URL of the company",
+            "example": "https://example.com"
+          },
+          "profilePicture": {
+            "type": "string",
+            "description": "The profile picture of the card owner",
+            "format": "binary"
+          },
+          "companyLogo": {
+            "type": "string",
+            "description": "The company logo",
+            "format": "binary"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "The phone number of the card owner",
+            "example": "+1 123 456 7890, +1 234 567 8901"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the template",
+            "example": "Active",
+            "enum": [
+              "Active",
+              "Inactive",
+              "Deleted"
+            ]
+          }
+        },
+        "required": [
+          "fullName",
+          "positionName",
+          "companyName",
+          "color",
+          "emailAddress",
+          "profilePicture",
+          "companyLogo",
+          "phoneNumber"
+        ]
+      },
+      "GenerateCardDto": {
+        "type": "object",
+        "properties": {
+          "templateId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Template ID",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "cardId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Card ID",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          }
+        },
+        "required": [
+          "templateId",
+          "cardId"
+        ]
+      },
+      "UpdateCardDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "positionName": {
+            "type": "string",
+            "description": "The position name of the card owner",
+            "example": "Software Engineer"
+          },
+          "companyName": {
+            "type": "string",
+            "description": "The name of the company",
+            "example": "Company Inc."
+          },
+          "color": {
+            "type": "string",
+            "description": "The hex color of the card",
+            "example": "#000000"
+          },
+          "emailAddress": {
+            "type": "string",
+            "description": "The email address of the card owner",
+            "example": "jonhdeo@example.com"
+          },
+          "websiteUrl": {
+            "type": "string",
+            "description": "The website URL of the company",
+            "example": "https://example.com"
+          },
+          "profilePicture": {
+            "type": "string",
+            "description": "The profile picture of the card owner",
+            "format": "binary"
+          },
+          "companyLogo": {
+            "type": "string",
+            "description": "The company logo",
+            "format": "binary"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "The phone number of the card owner",
+            "example": "+1 123 456 7890, +1 234 567 8901"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the template",
+            "example": "Active",
+            "enum": [
+              "Active",
+              "Inactive",
+              "Deleted"
+            ]
+          }
+        }
+      },
+      "CreateUserDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "jonhdeo@example.com",
+            "description": "The email of the user"
+          },
+          "password": {
+            "type": "string",
+            "example": "password",
+            "description": "The password of the user"
+          },
+          "fullName": {
+            "type": "string",
+            "example": "Jonh Deo",
+            "description": "The full name of the user"
+          },
+          "profilePicture": {
+            "type": "string",
+            "format": "binary",
+            "description": "The profile picture of the user"
+          },
+          "role": {
+            "type": "string",
+            "example": "Customer",
+            "description": "The role of the user",
+            "enum": [
+              "Customer",
+              "Admin"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "example": "Active",
+            "description": "The status of the user",
+            "enum": [
+              "Active",
+              "Inactive",
+              "Deleted"
+            ]
+          },
+          "isEmailVerified": {
+            "type": "boolean",
+            "example": false,
+            "description": "The email verification status of the user"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "fullName",
+          "profilePicture"
+        ]
+      },
+      "CustomerUpdateDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "example": "Jonh Deo",
+            "description": "The full name of the user"
+          },
+          "password": {
+            "type": "string",
+            "example": "password",
+            "description": "The password of the user"
+          },
+          "profilePicture": {
+            "type": "string",
+            "format": "binary",
+            "description": "The profile picture of the user"
+          }
+        },
+        "required": [
+          "fullName",
+          "password",
+          "profilePicture"
+        ]
+      },
+      "UpdateUserDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "jonhdeo@example.com",
+            "description": "The email of the user"
+          },
+          "password": {
+            "type": "string",
+            "example": "password",
+            "description": "The password of the user"
+          },
+          "fullName": {
+            "type": "string",
+            "example": "Jonh Deo",
+            "description": "The full name of the user"
+          },
+          "profilePicture": {
+            "type": "string",
+            "format": "binary",
+            "description": "The profile picture of the user"
+          },
+          "role": {
+            "type": "string",
+            "example": "Customer",
+            "description": "The role of the user",
+            "enum": [
+              "Customer",
+              "Admin"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "example": "Active",
+            "description": "The status of the user",
+            "enum": [
+              "Active",
+              "Inactive",
+              "Deleted"
+            ]
+          },
+          "isEmailVerified": {
+            "type": "boolean",
+            "example": false,
+            "description": "The email verification status of the user"
+          }
+        }
+      },
+      "CreateOrderDto": {
+        "type": "object",
+        "properties": {
+          "packageId": {
+            "type": "string",
+            "description": "The package id",
+            "example": "5f4b3b2d-5b3d-4a5d-9b3b-2b5d4a5d9b3b"
+          },
+          "paymentMethodId": {
+            "type": "string",
+            "description": "The payment method id",
+            "example": "5f4b3b2d-5b3d-4a5d-9b3b-2b5d4a5d9b3b"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "The quantity of the package",
+            "example": 1
+          }
+        },
+        "required": [
+          "packageId",
+          "paymentMethodId",
+          "quantity"
+        ]
+      },
+      "VerifyOrderDto": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "description": "The package id",
+            "example": "5f4b3b2d-5b3d-4a5d-9b3b-2b5d4a5d9b3b"
+          },
+          "transactionNo": {
+            "type": "string",
+            "description": "The transaction number",
+            "example": "cpay_123456"
+          }
+        },
+        "required": [
+          "orderId",
+          "transactionNo"
+        ]
+      },
+      "CreatePaymentMethodDto": {
+        "type": "object",
+        "properties": {
+          "bankName": {
+            "type": "string",
+            "description": "Bank name",
+            "example": "Bank of America"
+          },
+          "bankLogo": {
+            "type": "string",
+            "format": "binary",
+            "description": "Bank logo"
+          }
+        },
+        "required": [
+          "bankName",
+          "bankLogo"
+        ]
+      },
+      "UpdatePaymentMethodDto": {
+        "type": "object",
+        "properties": {
+          "bankName": {
+            "type": "string",
+            "description": "Bank name",
+            "example": "Bank of America"
+          },
+          "bankLogo": {
+            "type": "string",
+            "format": "binary",
+            "description": "Bank logo"
+          }
+        }
+      },
+      "CreatePaymentDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "UpdatePaymentDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreateFaqDto": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "The question of the FAQ",
+            "example": "What is the capital of Nigeria?"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the question",
+            "example": "The capital of Nigeria is Abuja"
+          },
+          "order": {
+            "type": "number",
+            "description": "The order of the FAQ",
+            "example": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the template",
+            "example": "Active",
+            "enum": [
+              "Active",
+              "Inactive",
+              "Deleted"
+            ]
+          }
+        },
+        "required": [
+          "question",
+          "answer",
+          "order"
+        ]
+      },
+      "UpdateFaqDto": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "The question of the FAQ",
+            "example": "What is the capital of Nigeria?"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The answer to the question",
+            "example": "The capital of Nigeria is Abuja"
+          },
+          "order": {
+            "type": "number",
+            "description": "The order of the FAQ",
+            "example": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the template",
+            "example": "Active",
+            "enum": [
+              "Active",
+              "Inactive",
+              "Deleted"
+            ]
+          }
+        }
       }
     }
   }
